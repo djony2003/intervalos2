@@ -15,18 +15,26 @@ function getNoteByStep(startNote, stepOffset) {
 
 function generateChordNotes(tonic, type, intervals) {
     let notes = [{ note: tonic, interval: "Tônica" }];
+    let hasAugmentedFifth = false;
+    let hasDiminishedFifth = false;
+
     if (type === "m") {
         notes.push({ note: getNoteByStep(tonic, 3), interval: "Terça menor" });
     } else if (type === "dim") {
         notes.push({ note: getNoteByStep(tonic, 3), interval: "Terça menor" });
         notes.push({ note: getNoteByStep(tonic, 6), interval: "Quinta diminuta" });
+        hasDiminishedFifth = true;
     } else if (type === "aug") {
         notes.push({ note: getNoteByStep(tonic, 4), interval: "Terça maior" });
         notes.push({ note: getNoteByStep(tonic, 8), interval: "Quinta aumentada" });
+        hasAugmentedFifth = true;
     } else {
         notes.push({ note: getNoteByStep(tonic, 4), interval: "Terça maior" });
     }
-    notes.push({ note: getNoteByStep(tonic, 7), interval: "Quinta justa" });
+
+    if (!hasAugmentedFifth && !hasDiminishedFifth) {
+        notes.push({ note: getNoteByStep(tonic, 7), interval: "Quinta justa" });
+    }
 
     intervals.forEach(interval => {
         switch (interval) {
@@ -34,13 +42,22 @@ function generateChordNotes(tonic, type, intervals) {
                 notes.push({ note: getNoteByStep(tonic, 5), interval: "Quarta justa" });
                 break;
             case "b5":
-                notes.push({ note: getNoteByStep(tonic, 6), interval: "Quinta diminuta" });
+                if (!hasDiminishedFifth) {
+                    notes.push({ note: getNoteByStep(tonic, 6), interval: "Quinta diminuta" });
+                    hasDiminishedFifth = true;
+                }
                 break;
             case "#5":
-                notes.push({ note: getNoteByStep(tonic, 8), interval: "Quinta aumentada" });
+                if (!hasAugmentedFifth) {
+                    notes.push({ note: getNoteByStep(tonic, 8), interval: "Quinta aumentada" });
+                    hasAugmentedFifth = true;
+                }
                 break;
             case "6":
                 notes.push({ note: getNoteByStep(tonic, 9), interval: "Sexta maior" });
+                break;
+            case "7":
+                notes.push({ note: getNoteByStep(tonic, 10), interval: "Sétima menor" });
                 break;
             case "b9":
                 notes.push({ note: getNoteByStep(tonic, 1), interval: "Nona bemol" });
