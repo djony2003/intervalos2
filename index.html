@@ -4,146 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Montador de Acordes</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <style>
-        :root {
-            --background-color: #f0f4f8;
-            --container-bg-color: #ffffff;
-            --text-color: #2d3436;
-            --heading-color: #0984e3;
-            --label-color: #2d3436;
-            --input-bg-color: #ffffff;
-            --input-border-color: #dfe6e9;
-            --button-bg-color: #0984e3;
-            --button-hover-bg-color: #74b9ff;
-            --result-bg-color: #dfe6e9;
-            --result-border-color: #b2bec3;
-            --font-family: 'Poppins', sans-serif;
-            --heading-font-family: 'Playfair Display', serif;
-        }
-
-        body {
-            font-family: var(--font-family);
-            background-color: var(--background-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .container {
-            background-color: var(--container-bg-color);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 900px;
-            width: 100%;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h1 {
-            font-family: var(--heading-font-family);
-            color: var(--heading-color);
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        .form-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 900px;
-            gap: 10px;
-        }
-        label {
-            font-weight: 500;
-            text-align: left;
-            color: var(--label-color);
-            font-size: 1em;
-            flex-basis: calc(50% - 10px);
-        }
-        select, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border-radius: 6px;
-            border: 1px solid var(--input-border-color);
-            font-size: 0.9em;
-            font-family: var(--font-family);
-        }
-        select {
-            background-color: var(--input-bg-color);
-            color: var(--text-color);
-            transition: border-color 0.3s;
-        }
-        select:focus {
-            outline: none;
-            border-color: var(--heading-color);
-        }
-        button {
-            background-color: var(--button-bg-color);
-            color: #ffffff;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            border: none;
-            margin-top: 15px;
-            font-weight: 600;
-            max-width: 200px;
-        }
-        button:hover {
-            background-color: var(--button-hover-bg-color);
-            transform: translateY(-2px);
-        }
-        #result {
-            margin-top: 20px;
-            background-color: var(--result-bg-color);
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid var(--result-border-color);
-            color: var(--text-color);
-            font-weight: 500;
-            font-family: var(--font-family);
-            font-size: 1em;
-            text-align: left;
-            width: 100%;
-            max-width: 900px;
-        }
-        #notes {
-            margin-top: 15px;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 5px;
-            background-color: var(--result-bg-color);
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid var(--result-border-color);
-            color: var(--text-color);
-            font-weight: 500;
-            font-family: var(--font-family);
-            font-size: 0.85em;
-            width: 100%;
-            max-width: 900px;
-        }
-        .note-item {
-            display: flex;
-            justify-content: space-between;
-            width: calc(33% - 10px);
-            padding: 5px;
-            background-color: #ffffff;
-            border-radius: 6px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        .note-label {
-            font-weight: 600;
-        }
-    </style>
+    
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -175,7 +38,6 @@
             <select id="type">
                 <option value="">Maior</option>
                 <option value="m">Menor</option>
-                <option value="7">Sétima</option>
                 <option value="aug">Aumentado</option>
                 <option value="dim">Diminuto</option>
             </select>
@@ -186,6 +48,7 @@
                 <option value="b5">5ª- (Quinta Diminuta)</option>
                 <option value="#5">5ª+ (Quinta Aumentada)</option>
                 <option value="6">6ª (Sexta)</option>
+                <option value="7">7ª (Sétima menor)</option>
                 <option value="b9">9ª- (Nona Bemol)</option>
                 <option value="9">9ª (Nona)</option>
                 <option value="11">11ª (Décima Primeira)</option>
@@ -222,106 +85,3 @@
 </body>
 </html>
 
-<script>
-    const noteSteps = {
-        "C": 0, "C#": 1, "Db": 1, "D": 2, "D#": 3, "Eb": 3, "E": 4, "F": 5, "F#": 6, "Gb": 6, "G": 7, "G#": 8, "Ab": 8, "A": 9, "A#": 10, "Bb": 10, "B": 11
-    };
-
-    const stepsToNote = Object.keys(noteSteps).reduce((acc, key) => {
-        acc[noteSteps[key]] = key;
-        return acc;
-    }, {});
-
-    function getNoteByStep(startNote, stepOffset) {
-        const startStep = noteSteps[startNote];
-        const targetStep = (startStep + stepOffset) % 12;
-        return stepsToNote[targetStep];
-    }
-
-    function generateChordNotes(tonic, type, intervals) {
-        let notes = [{ note: tonic, interval: "Tônica" }];
-        if (type === "m") {
-            notes.push({ note: getNoteByStep(tonic, 3), interval: "Terça menor" });
-        } else if (type === "dim") {
-            notes.push({ note: getNoteByStep(tonic, 3), interval: "Terça menor" });
-            notes.push({ note: getNoteByStep(tonic, 6), interval: "Quinta diminuta" });
-        } else if (type === "aug") {
-            notes.push({ note: getNoteByStep(tonic, 4), interval: "Terça maior" });
-            notes.push({ note: getNoteByStep(tonic, 8), interval: "Quinta aumentada" });
-        } else {
-            notes.push({ note: getNoteByStep(tonic, 4), interval: "Terça maior" });
-        }
-        notes.push({ note: getNoteByStep(tonic, 7), interval: "Quinta justa" });
-
-        intervals.forEach(interval => {
-            switch (interval) {
-                case "4":
-                    notes.push({ note: getNoteByStep(tonic, 5), interval: "Quarta justa" });
-                    break;
-                case "b5":
-                    notes.push({ note: getNoteByStep(tonic, 6), interval: "Quinta diminuta" });
-                    break;
-                case "#5":
-                    notes.push({ note: getNoteByStep(tonic, 8), interval: "Quinta aumentada" });
-                    break;
-                case "6":
-                    notes.push({ note: getNoteByStep(tonic, 9), interval: "Sexta maior" });
-                    break;
-                case "b9":
-                    notes.push({ note: getNoteByStep(tonic, 1), interval: "Nona bemol" });
-                    break;
-                case "9":
-                    notes.push({ note: getNoteByStep(tonic, 2), interval: "Nona" });
-                    break;
-                case "11":
-                    notes.push({ note: getNoteByStep(tonic, 5), interval: "Décima primeira" });
-                    break;
-                case "13":
-                    notes.push({ note: getNoteByStep(tonic, 9), interval: "Décima terceira" });
-                    break;
-                case "#13":
-                    notes.push({ note: getNoteByStep(tonic, 10), interval: "Décima terceira aumentada" });
-                    break;
-            }
-        });
-
-        return notes;
-    }
-
-    document.getElementById('buildChord').addEventListener('click', () => {
-        const tonic = document.getElementById('tonic').value;
-        const type = document.getElementById('type').value;
-        const intervals = Array.from(document.getElementById('intervals').selectedOptions).map(option => option.value).slice(0, 3);
-        const bass = document.getElementById('bass').value;
-
-        let chord = `${tonic}`;
-        if (type) {
-            chord += type;
-        }
-        if (intervals.length > 0) {
-            chord += intervals.map((interval, index) => index === 0 ? '/' + interval : '/' + interval).join('');
-        }
-        if (bass) {
-            chord += `/${bass}`;
-        }
-
-        document.getElementById('result').innerText = `Acorde: ${chord}`;
-
-        // Gerar e mostrar as notas do acorde
-        const notes = generateChordNotes(tonic, type, intervals);
-        const notesContainer = document.getElementById('notes');
-        notesContainer.innerHTML = '';
-        notes.forEach(noteObj => {
-            const noteItem = document.createElement('div');
-            noteItem.className = 'note-item';
-            noteItem.innerHTML = `<span class="note-label">${noteObj.interval}:</span> <span>${noteObj.note}</span>`;
-            notesContainer.appendChild(noteItem);
-        });
-        if (bass) {
-            const bassItem = document.createElement('div');
-            bassItem.className = 'note-item';
-            bassItem.innerHTML = `<span class="note-label">Baixo:</span> <span>${bass}</span>`;
-            notesContainer.appendChild(bassItem);
-        }
-    });
-</script>
