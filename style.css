@@ -1,5 +1,5 @@
 :root {
-    --background-color: #f0f4f8;
+    --background-color: #4d4e50;
     --container-bg-color: #ffffff;
     --text-color: #2d3436;
     --heading-color: #0984e3;
@@ -26,6 +26,7 @@ body {
     padding: 20px;
     box-sizing: border-box;
 }
+
 .container {
     background-color: var(--container-bg-color);
     padding: 20px;
@@ -38,12 +39,14 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 h1 {
     font-family: var(--heading-font-family);
     color: var(--heading-color);
     font-size: 2em;
     margin-bottom: 20px;
 }
+
 .form-section {
     display: flex;
     flex-wrap: wrap;
@@ -52,6 +55,7 @@ h1 {
     max-width: 900px;
     gap: 10px;
 }
+
 label {
     font-weight: 500;
     text-align: left;
@@ -59,6 +63,7 @@ label {
     font-size: 1em;
     flex-basis: calc(50% - 10px);
 }
+
 select, button {
     width: 100%;
     padding: 10px;
@@ -68,15 +73,18 @@ select, button {
     font-size: 0.9em;
     font-family: var(--font-family);
 }
+
 select {
     background-color: var(--input-bg-color);
     color: var(--text-color);
     transition: border-color 0.3s;
 }
+
 select:focus {
     outline: none;
     border-color: var(--heading-color);
 }
+
 button {
     background-color: var(--button-bg-color);
     color: #ffffff;
@@ -87,10 +95,12 @@ button {
     font-weight: 600;
     max-width: 200px;
 }
+
 button:hover {
     background-color: var(--button-hover-bg-color);
     transform: translateY(-2px);
 }
+
 #result {
     margin-top: 20px;
     background-color: var(--result-bg-color);
@@ -105,6 +115,7 @@ button:hover {
     width: 100%;
     max-width: 900px;
 }
+
 #notes {
     margin-top: 15px;
     display: flex;
@@ -122,6 +133,7 @@ button:hover {
     width: 100%;
     max-width: 900px;
 }
+
 .note-item {
     display: flex;
     justify-content: space-between;
@@ -131,6 +143,31 @@ button:hover {
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .note-label {
     font-weight: 600;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .form-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    label {
+        flex-basis: 100%;
+    }
+
+    select, button {
+        font-size: 16px;
+    }
+
+    .note-item {
+        width: 100%;
+    }
 }
